@@ -3,6 +3,8 @@ package app
 import (
 	"GoAPIOnECHO/internal/controller"
 	"GoAPIOnECHO/internal/repository"
+	"GoAPIOnECHO/internal/service/impl"
+	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 )
@@ -22,11 +24,14 @@ func StartServer() error {
 	//}
 
 	e := echo.New()
-	controller.SetupRoutes(e)
+	service := &impl.TodoService{}
 
+	validator := validator.New()
+	ctrl := &controller.Controller{Service: *service, Validator: validator}
+
+	controller.SetupRoutes(e, ctrl)
 	if err := e.Start(":8080"); err != nil {
 		return echo.NewHTTPError(500, "Something went wrong: "+err.Error())
 	}
-
 	return nil
 }

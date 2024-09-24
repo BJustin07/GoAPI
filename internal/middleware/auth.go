@@ -18,7 +18,7 @@ func AuthUser() echo.MiddlewareFunc {
 		if username == "justin" && password == "sining" {
 			claims := &jwt.RegisteredClaims{
 				Subject:   userId,
-				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Second * 60)),
+				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 1)),
 			}
 
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
