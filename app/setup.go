@@ -3,7 +3,7 @@ package app
 import (
 	"GoAPIOnECHO/internal/controller"
 	"GoAPIOnECHO/internal/repository"
-	"GoAPIOnECHO/internal/service/impl"
+	"GoAPIOnECHO/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
@@ -24,7 +24,7 @@ func StartServer() error {
 	//}
 
 	e := echo.New()
-	service := &impl.TodoService{}
+	service := &service.TodoService{}
 
 	validator := validator.New()
 	ctrl := &controller.Controller{Service: *service, Validator: validator}

@@ -3,7 +3,7 @@ package controller
 import (
 	"GoAPIOnECHO/internal/middleware"
 	"GoAPIOnECHO/internal/model"
-	"GoAPIOnECHO/internal/service/impl"
+	"GoAPIOnECHO/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"net/http"
@@ -11,7 +11,7 @@ import (
 )
 
 type Controller struct {
-	Service   impl.TodoService
+	Service   service.TodoService
 	Validator *validator.Validate
 }
 
